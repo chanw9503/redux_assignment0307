@@ -13,8 +13,9 @@ function TodoBody() {
   return (
     <TodoBodyBlock>
       <TodoTitle>Working...🔥</TodoTitle>
-      <TodoDraw />
+      <TodoDraw isWorking={false} />
       <TodoTitle>Done...🎉</TodoTitle>
+      <TodoDraw isWorking={true} />
     </TodoBodyBlock>
   );
 }

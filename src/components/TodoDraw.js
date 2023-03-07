@@ -3,15 +3,17 @@ import TodoCreate from './TodoCreate';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
-const TodoDrawblock = styled.div``;
+const TodoDrawblock = styled.div`
+  display: flex;
+  gap: 10px;
+`;
 
-function TodoDraw() {
+function TodoDraw({ isWorking }) {
   const Todos = useSelector((state) => state.todoReducer);
-  console.log(Todos);
   return (
     <TodoDrawblock>
       {Todos.map((item) => {
-        return <TodoCreate key={item.id} />;
+        if (isWorking == item.isDone) return <TodoCreate key={item.id} item={item} />;
       })}
     </TodoDrawblock>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import TodoButton from './TodoButton';
+import { useDispatch } from 'react-redux';
+import { deleteList, isDoneList } from '../redux/modules/todoList';
 
 const TodoCreateBlock = styled.div`
   background-color: white;
@@ -34,17 +36,37 @@ const ButtonBox = styled.div`
   gap: 10px;
 `;
 
-function TodoCreate() {
+function TodoCreate({ item }) {
+  const dispatch = useDispatch();
+
+  const onDeleteClick = () => {
+    dispatch(deleteList(item.id));
+  };
+
+  const onDoneListClick = () => {
+    dispatch(isDoneList(item.id));
+  };
+
   return (
     <TodoCreateBlock>
-      <Title>제목ㅌㄴ</Title>
-      <BodyContent>sdasdasdasdasd</BodyContent>
+      <Title>{item.title}</Title>
+      <BodyContent>{item.body}</BodyContent>
       <ButtonBox>
-        <TodoButton background="white" color="black" border="3px solid red">
+        <TodoButton
+          onClick={onDeleteClick}
+          background="white"
+          color="black"
+          border="3px solid red"
+        >
           삭제하기
         </TodoButton>
-        <TodoButton background="white" color="black" border="3px solid teal">
-          완료
+        <TodoButton
+          onClick={onDoneListClick}
+          background="white"
+          color="black"
+          border="3px solid teal"
+        >
+          {item.isDone ? '취소' : '완료'}
         </TodoButton>
       </ButtonBox>
     </TodoCreateBlock>

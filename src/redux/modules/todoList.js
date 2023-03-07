@@ -1,5 +1,6 @@
 const ADD_LIST = 'ADD_LIST';
 const DELETE_LIST = 'DELETE_LIST';
+const DONE_LIST = 'DONE_LIST';
 
 const initialState = [
   {
@@ -25,20 +26,40 @@ export const deleteList = (id) => {
   };
 };
 
-const todoReducer = (prevState = initialState, aciton) => {
-  switch (aciton.type) {
+export const isDoneList = (id) => {
+  return {
+    type: DONE_LIST,
+    id,
+  };
+};
+
+const todoReducer = (prevState = initialState, action) => {
+  switch (action.type) {
     case ADD_LIST:
       const newCard = {
-        id: Date.now,
-        title: aciton.title,
-        body: aciton.body,
+        id: Date.now(),
+        title: action.title,
+        body: action.body,
         isDone: false,
       };
 
       return [...prevState, newCard];
     case DELETE_LIST:
-      const newList = prevState.filter((item) => item.id !== aciton.id);
+      const newList = prevState.filter((item) => item.id !== action.id);
       return newList;
+
+    case DONE_LIST:
+      const newTodoList = prevState.map((item) => {
+        const newTodo = { ...item };
+        if (item.id === action.id) {
+          newTodo.isDone = !newTodo.isDone;
+          return newTodo;
+        } else {
+          return item;
+        }
+      });
+
+      return newTodoList;
 
     default:
       return prevState;

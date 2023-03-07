@@ -10,6 +10,8 @@ const Input = styled.input`
   width: 230px;
   height: 40px;
 
+  font-size: 20px;
+
   border-radius: 10px;
   border: none;
 `;
@@ -22,13 +24,21 @@ const TodoInputBlock = styled.div`
   gap: 20px;
 `;
 
-function TodoInput() {
+function TodoInput({ onChange }) {
   return (
     <TodoInputBlock>
       <Label>제목 : </Label>
-      <Input type="text" required></Input>
+      <Input
+        onChange={(event) => onChange(0, event.target.value)}
+        type="text"
+        required
+      ></Input>
       <Label>내용 : </Label>
-      <Input type="text" required></Input>
+      <Input
+        onChange={(event) => onChange(1, event.target.value)}
+        type="text"
+        required
+      ></Input>
     </TodoInputBlock>
   );
 }

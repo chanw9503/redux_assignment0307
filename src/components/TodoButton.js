@@ -14,9 +14,9 @@ const Button = styled.button`
   color: ${(props) => props.color || 'white'};
 `;
 
-function TodoButton({ background, border, color, children }) {
+function TodoButton({ onClick, background, border, color, children }) {
   return (
-    <Button background={background} border={border} color={color}>
+    <Button onClick={onClick} background={background} border={border} color={color}>
       {children}
     </Button>
   );
