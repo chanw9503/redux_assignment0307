@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TodoButton from './TodoButton';
 import { useDispatch } from 'react-redux';
 import { deleteList, isDoneList } from '../redux/modules/todoList';
+import { Link, useParams } from 'react-router-dom';
 
 const TodoCreateBlock = styled.div`
   background-color: white;
@@ -10,8 +11,8 @@ const TodoCreateBlock = styled.div`
   float: left;
   display: flex;
 
-  width: 280px;
-  height: 280px;
+  width: 245px;
+  height: 245px;
   padding: 20px;
 
   border-radius: 15px;
@@ -19,7 +20,7 @@ const TodoCreateBlock = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
 `;
 
 const Title = styled.div`
@@ -49,8 +50,9 @@ function TodoCreate({ item }) {
 
   return (
     <TodoCreateBlock>
-      <Title>{item.title}</Title>
-      <BodyContent>{item.body}</BodyContent>
+      <Link to={`/detail/${item?.id}`}>상세보기</Link>
+      <Title>{item?.title}</Title>
+      <BodyContent>{item?.body}</BodyContent>
       <ButtonBox>
         <TodoButton
           onClick={onDeleteClick}
@@ -66,7 +68,7 @@ function TodoCreate({ item }) {
           color="black"
           border="3px solid teal"
         >
-          {item.isDone ? '취소' : '완료'}
+          {item?.isDone ? '취소' : '완료'}
         </TodoButton>
       </ButtonBox>
     </TodoCreateBlock>

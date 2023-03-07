@@ -5,7 +5,10 @@ import { useSelector } from 'react-redux';
 
 const TodoDrawblock = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
+  max-width: 1200px;
+  min-width: 800px;
 `;
 
 function TodoDraw({ isWorking }) {
@@ -13,7 +16,9 @@ function TodoDraw({ isWorking }) {
   return (
     <TodoDrawblock>
       {Todos.map((item) => {
-        if (isWorking == item.isDone) return <TodoCreate key={item.id} item={item} />;
+        if (isWorking == item.isDone) {
+          return <TodoCreate key={item.id} item={item} />;
+        }
       })}
     </TodoDrawblock>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
@@ -7,15 +8,25 @@ const Nav = styled.nav`
   padding: 20px;
   max-width: 1200px;
   min-width: 800px;
-  margin: 0 auto;
+
+  border: 1px solid black;
+  border-radius: 15px;
 
   font-size: 25px;
 `;
 
 function Navigation() {
+  const navigate = useNavigate();
+
   return (
     <Nav>
-      <div>My todolist</div>
+      <div
+        onClick={() => {
+          navigate('/');
+        }}
+      >
+        My todolist
+      </div>
       <div>Welcome</div>
     </Nav>
   );

@@ -13,7 +13,6 @@ const TodoHeaderBlock = styled.form`
   align-items: center;
   max-width: 1200px;
   min-width: 800px;
-  width: 95vw;
   justify-content: space-between;
   border-radius: 15px;
 `;
