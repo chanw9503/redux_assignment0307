@@ -1,6 +1,7 @@
-const ADD_LIST = 'ADD_LIST';
-const DELETE_LIST = 'DELETE_LIST';
-const DONE_LIST = 'DONE_LIST';
+const ADD_LIST = 'todoList/ADD_LIST';
+const DELETE_LIST = 'todoList/DELETE_LIST';
+const DONE_LIST = 'todoList/DONE_LIST';
+const UPDATE_LIST = 'todoList/UPDATE_LIST';
 
 const initialState = [
   {
@@ -8,6 +9,7 @@ const initialState = [
     title: 'title 입니다.',
     body: 'body 입니다.',
     isDone: false,
+    isEdit: false,
   },
 ];
 
@@ -30,6 +32,15 @@ export const isDoneList = (id) => {
   return {
     type: DONE_LIST,
     id,
+  };
+};
+
+export const UpdateList = (id, title, body) => {
+  return {
+    type: UPDATE_LIST,
+    id,
+    title,
+    body,
   };
 };
 
@@ -60,6 +71,25 @@ const todoReducer = (prevState = initialState, action) => {
       });
 
       return newTodoList;
+
+    case UPDATE_LIST:
+      const newEditList = prevState.map((item) => {
+        const newTodo = { ...item };
+        if (item.id === action.id) {
+          if (item.isEdit === true) {
+            console.log('title', action.title);
+            newTodo.title = action.title;
+            newTodo.body = action.body;
+          }
+          newTodo.isEdit = !newTodo.isEdit;
+          console.log(newTodo);
+          return newTodo;
+        } else {
+          return item;
+        }
+      });
+
+      return newEditList;
 
     default:
       return prevState;

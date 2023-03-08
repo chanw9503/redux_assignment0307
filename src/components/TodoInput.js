@@ -6,7 +6,7 @@ const Label = styled.label`
   font-size: 23px;
 `;
 
-const Input = styled.input`
+export const Input = styled.input`
   width: 230px;
   height: 40px;
 
