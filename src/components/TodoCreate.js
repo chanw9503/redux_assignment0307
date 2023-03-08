@@ -12,7 +12,7 @@ const TodoCreateBlock = styled.div`
   float: left;
   display: flex;
 
-  width: auto;
+  width: 345px;
   height: 245px;
   padding: 20px;
 
@@ -21,6 +21,7 @@ const TodoCreateBlock = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+
   gap: 20px;
 `;
 
@@ -35,6 +36,7 @@ const BodyContent = styled.div`
 
 const ButtonBox = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 `;
 
